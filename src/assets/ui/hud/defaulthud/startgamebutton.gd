@@ -24,6 +24,6 @@ func _pressed():
 func _on_state_changed(old_state, new_state) -> void:
 	match new_state:
 		GameManager.State.Normal:
-			text = "Back to Lobby"
+			text = tr("Back to Lobby")
 		GameManager.State.Lobby:
-			text = "Start Game"
+			text = tr("Start Game")

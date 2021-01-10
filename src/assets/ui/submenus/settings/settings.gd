@@ -61,7 +61,7 @@ var settings = [
 	Setting.new(
 		0, SettingType.OPTION, tr("Video")+"/"+tr("Colorblind mode"), "dummy_function", ["RGB", "GBR", "BRG", "BGR"]
 	),
-	Setting.new(30, SettingType.SLIDER, tr("Sound")+"/"+("Volume"), "dummy_function"),
+	Setting.new(30, SettingType.SLIDER, tr("Sound")+"/"+tr("Volume"), "dummy_function"),
 	Setting.new(0, SettingType.OPTION, tr("Locale")+"/"+tr("Language"), "set_language", get_languages())
 ]
 
