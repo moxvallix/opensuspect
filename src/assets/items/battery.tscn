@@ -1,12 +1,19 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/items/item.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/items/textures/battery.png" type="Texture" id=2]
+[ext_resource path="res://assets/common/shaders/items.shader" type="Shader" id=3]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/line_color = Color( 1, 1, 1, 1 )
+shader_param/line_thickness = 5.0
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 9.5, 4.4 )
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=3]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -34,13 +41,13 @@ void fragment()
 	COLOR = mix(color, outlined_result, outlined_result.a);
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 3 )
 shader_param/line_color = Color( 1, 1, 0, 0 )
 shader_param/line_thickness = 5.0
 
-[sub_resource type="SpriteFrames" id=4]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -48,27 +55,28 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=5]
+[sub_resource type="CapsuleShape2D" id=6]
 radius = 8.0
 height = 12.0
 
 [node name="Battery" instance=ExtResource( 1 )]
+material = SubResource( 1 )
 position = Vector2( -0.0936432, 0 )
 
 [node name="ItemCollision" parent="." index="0"]
 rotation = 2.35619
-shape = SubResource( 6 )
+shape = SubResource( 2 )
 
 [node name="SpritePosition" parent="." index="2"]
 position = Vector2( 0, 0 )
 
 [node name="ItemSprite" parent="SpritePosition" index="0"]
-material = SubResource( 3 )
+material = SubResource( 4 )
 rotation = 2.35619
 scale = Vector2( 0.1, 0.1 )
-frames = SubResource( 4 )
+frames = SubResource( 5 )
 offset = Vector2( 0, 0 )
 
 [node name="MouseCollision" parent="SpritePosition/MouseArea" index="0"]
 rotation = 0.785398
-shape = SubResource( 5 )
+shape = SubResource( 6 )
